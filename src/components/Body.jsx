@@ -1,11 +1,9 @@
 import React, { useEffect } from "react";
-import { Route, Routes, useNavigate } from "react-router";
-import Login from "./Login";
-import Browse from "./Browse";
+import { Outlet, useNavigate } from "react-router";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../utils/firebaseConfig";
 import { useDispatch } from "react-redux";
-import { addUser, removeUser } from "../../utils/userSlice";
+import { removeUser } from "../../utils/userSlice";
 import Header from "./Header";
 
 const Body = () => {
@@ -14,30 +12,19 @@ const Body = () => {
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        const { uid, email, displayName } = user;
-        dispatch(addUser({ uid, email, displayName }));
-        console.log("Here i am");
         navigate("/browse");
       } else {
-        navigate("/");
+        navigate("/login");
         dispatch(removeUser());
       }
     });
+
+    return;
   }, []);
   return (
     <div>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <>
-              <Header />
-              <Login />
-            </>
-          }
-        ></Route>
-        <Route path="/browse" element={<Browse />}></Route>
-      </Routes>
+      <Header />
+      <Outlet />
     </div>
   );
 };

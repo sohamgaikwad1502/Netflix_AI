@@ -4,9 +4,11 @@ import validate from "../../utils/validate";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
 import { auth } from "../../utils/firebaseConfig";
-import Header from "./Header";
+import { useDispatch } from "react-redux";
+import { addUser } from "../../utils/userSlice";
 
 const Login = () => {
   const [isSignUp, setisSignUp] = useState(false);
@@ -14,6 +16,7 @@ const Login = () => {
   const password = useRef(null);
   const fullName = useRef(null);
   const [errorMessage, setErrorMessage] = useState("");
+  const dispatch = useDispatch();
 
   const handleLogin = () => {
     const isDataValid = validate(emailId.current.value, password.current.value);
@@ -24,16 +27,22 @@ const Login = () => {
           auth,
           emailId.current.value,
           password.current.value
-        ).then((userCredential) => {
-          const user = userCredential.user;
-          console.log(user);
-        });
-        (error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          console.log(errorMessage);
-          setErrorMessage(errorMessage);
-        };
+        )
+          .then((userCredential) => {
+            const user = userCredential.user;
+            const updated_user = updateProfile(user, {
+              displayName: fullName.current.value,
+            });
+            const { uid, email, displayName } = updated_user;
+            dispatch(addUser({ uid, email, displayName }));
+            console.log(updated_user);
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log(errorMessage);
+            setErrorMessage(errorMessage);
+          });
       } else {
         signInWithEmailAndPassword(
           auth,
@@ -43,8 +52,8 @@ const Login = () => {
           .then((userCredential) => {
             // Signed in
             const user = userCredential.user;
-
-            console.log("Signed In user:", user);
+            const { uid, email, displayName } = user;
+            dispatch(addUser({ uid, email, displayName }));
           })
           .catch((error) => {
             const errorCode = error.code;
@@ -66,7 +75,6 @@ const Login = () => {
 
   return (
     <div className="relative h-screen w-full flex justify-center items-center">
-      <Header></Header>
       <div className="absolute inset-0">
         <img
           src="https://assets.nflxext.com/ffe/siteui/vlv3/f268d374-734d-474f-ad13-af5ba87ef9fc/web/IN-en-20250210-TRIFECTA-perspective_92338d5d-6ccd-4b1a-8536-eb2b0240a55e_large.jpg"
