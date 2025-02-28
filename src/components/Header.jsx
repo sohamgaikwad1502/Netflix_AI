@@ -2,12 +2,10 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import { auth } from "../../utils/firebaseConfig";
 import { signOut } from "firebase/auth";
-import { useSelector } from "react-redux";
 
 const Header = () => {
   const navigate = useNavigate();
-  const user = useSelector((store) => store.user);
-
+  const userExist = auth.currentUser;
   const handleLogout = () => {
     signOut(auth)
       .then(() => {
@@ -25,12 +23,12 @@ const Header = () => {
         alt="Netflix Logo"
       />
 
-      {user && (
+      {userExist && (
         <div className="flex items-center gap-4">
           <img
             className="w-10 h-10 rounded-lg border-2 border-gray-400 hover:border-white transition-all duration-300 cursor-pointer"
             src={
-              user.photoURL ||
+              userExist.photoURL ||
               "https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png"
             }
             alt="User Profile"

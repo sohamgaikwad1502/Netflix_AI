@@ -1,7 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
+import useGetMovies from "../hooks/useGetMovies";
+import MainContainer from "./MainContainer";
+import SecondaryContainder from "./SecondaryContainder";
 
 const Browse = () => {
-  return <div>Browse</div>;
+  useGetMovies();
+  return (
+    <div>
+      <MainContainer />
+      <SecondaryContainder />
+    </div>
+  );
 };
 
 export default Browse;
