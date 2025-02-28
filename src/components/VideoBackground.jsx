@@ -14,11 +14,13 @@ const VideoBackground = ({ movie_id }) => {
           YOUTUBE_EMBED_LINK +
           trailerVideo?.key +
           "?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&loop=1&playlist=" +
-          trailerVideo?.key
+          trailerVideo?.key +
+          "&disablekb=1&fs=0"
         }
         title="YouTube video player"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         referrerPolicy="strict-origin-when-cross-origin"
+        frameBorder="0"
       ></iframe>
     </div>
   );
