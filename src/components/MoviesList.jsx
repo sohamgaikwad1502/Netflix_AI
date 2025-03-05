@@ -8,7 +8,7 @@ const MoviesList = ({ title, movies }) => {
         {title}
       </h1>
       <div className="relative group">
-        <div className="flex overflow-x-scroll scrollbar-hide pb-1 pt-1 -mx-2">
+        <div className="flex overflow-x-scroll scrollbar-hide -mx-2">
           <div className="flex gap-4">
             {movies?.map((movie, index) => (
               <MovieCard key={movie.id || index} movie={movie} />

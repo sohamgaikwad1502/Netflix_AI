@@ -1,15 +1,18 @@
-const BASE_URL = "http://localhost:5173/";
-const MOVIES_BASE_URL = "https://api.themoviedb.org/3/movie/";
-const YOUTUBE_EMBED_LINK = "https://www.youtube.com/embed/";
-const MOVIE_IMAGE_URL = "https://image.tmdb.org/t/p/w500/";
+const BASE_URL = import.meta.env.VITE_BASE_URL;
+const MOVIES_BASE_URL = import.meta.env.VITE_MOVIES_BASE_URL;
+const YOUTUBE_EMBED_LINK = import.meta.env.VITE_YOUTUBE_EMBED_LINK;
+const MOVIE_IMAGE_URL = import.meta.env.VITE_MOVIE_IMAGE_URL;
+const GET_MOVIES_DETAILS = import.meta.env.VITE_GET_MOVIES_DETAILS;
+const BACKGROUND_PHOTO_URL = import.meta.env.VITE_BACKGROUND_PHOTO_URL;
 const options = {
   method: "GET",
   headers: {
     accept: "application/json",
-    Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3YTljZWIzYmI4MTg0NDlmNjMyMzQzNTJlYjA5NGU0NiIsIm5iZiI6MTc0MDQxMDkyOC40Mywic3ViIjoiNjdiYzkwMzBhMjM5MjlhYzI4YmYwZTRhIiwic2NvcGVzIjpbImFwaV9yZWFkIl0sInZlcnNpb24iOjF9.1i79mIz-iIW4gsyumF0ORCMOgdtVcUbQJcQQ6-zXjmE",
+    Authorization: `Bearer ${import.meta.env.VITE_TMDB_KEY}`,
   },
 };
+
+const OPEN_AI_KEY = import.meta.env.VITE_OPEN_AI_KEY;
 
 export {
   BASE_URL,
@@ -17,4 +20,7 @@ export {
   MOVIES_BASE_URL,
   YOUTUBE_EMBED_LINK,
   MOVIE_IMAGE_URL,
+  OPEN_AI_KEY,
+  GET_MOVIES_DETAILS,
+  BACKGROUND_PHOTO_URL,
 };

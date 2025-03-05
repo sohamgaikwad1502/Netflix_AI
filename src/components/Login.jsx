@@ -9,6 +9,7 @@ import {
 import { auth } from "../../utils/firebaseConfig";
 import { useDispatch } from "react-redux";
 import { addUser } from "../../utils/userSlice";
+import { BACKGROUND_PHOTO_URL } from "../../utils/constants";
 
 const Login = () => {
   const [isSignUp, setisSignUp] = useState(false);
@@ -35,12 +36,11 @@ const Login = () => {
             });
             const { uid, email, displayName } = updated_user;
             dispatch(addUser({ uid, email, displayName }));
-            console.log(updated_user);
           })
           .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
-            console.log(errorMessage);
+
             setErrorMessage(errorMessage);
           });
       } else {
@@ -58,7 +58,7 @@ const Login = () => {
           .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
-            console.log(errorMessage);
+
             setErrorMessage(errorMessage);
           });
       }
@@ -66,10 +66,6 @@ const Login = () => {
       setErrorMessage(isDataValid);
       return;
     }
-
-    console.log(isDataValid);
-    console.log(emailId);
-    console.log(password);
     return;
   };
 
@@ -77,7 +73,7 @@ const Login = () => {
     <div className="relative h-screen w-full flex justify-center items-center">
       <div className="absolute inset-0">
         <img
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/f268d374-734d-474f-ad13-af5ba87ef9fc/web/IN-en-20250210-TRIFECTA-perspective_92338d5d-6ccd-4b1a-8536-eb2b0240a55e_large.jpg"
+          src={BACKGROUND_PHOTO_URL}
           alt="background"
           className="w-full h-full object-cover"
         />

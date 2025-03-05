@@ -8,7 +8,7 @@ const MainContainer = () => {
 
   if (!movies) return null;
 
-  const { original_title, overview, id } = movies[0];
+  const { original_title, overview, id } = movies[8];
 
   return (
     <div className="relative h-[50vh] sm:h-[60vh] md:h-[70vh] lg:h-screen w-full overflow-hidden">
