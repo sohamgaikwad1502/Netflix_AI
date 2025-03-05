@@ -46,20 +46,39 @@ const GptUserInput = () => {
   };
 
   return (
-    <div className=" w-auto pt-[15%]">
-      <div className="flex items-center justify-center">
+    <div className="w-full px-4 pt-[30%] sm:pt-[12%] md:pt-[15%]">
+      <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4">
         <input
           ref={searchText}
           type="text"
-          placeholder="what would you like to watch today?"
-          className="w-[40%] focus:w-[50%] mx-5 transition-all duration-300 ease-in-out border-2 border-white/50 rounded-lg px-4 py-2 bg-black/60 text-white focus:bg-black/80 focus:border-white focus:ring-2 focus:ring-white outline-none"
+          placeholder="What would you like to watch today?"
+          className="w-full sm:w-[60%] md:w-[50%] lg:w-[50%] 
+            transition-all duration-300 ease-in-out 
+            border-2 border-white/50 rounded-lg 
+            px-4 py-2 
+            bg-black/60 text-white 
+            focus:bg-black/80 focus:border-white focus:ring-2 focus:ring-white 
+            outline-none
+            sm:focus:w-[70%] md:focus:w-[55%] lg:focus:w-[45%]"
+          onKeyDown={(event) => {
+            if (event.key === "Enter") {
+              handleGptSearchClick();
+            }
+          }}
         />
         <button
-          className="btn btn-outline cursor-pointer text-center w-[10%]  hover:bg-red-600 transition-all duration-300 "
+          className="w-full sm:w-auto 
+            flex items-center justify-center 
+            px-4 py-2 
+            bg-red-600 text-white 
+            rounded-lg 
+            hover:bg-red-700 
+            transition-all duration-300 
+            space-x-2 cursor-pointer"
           onClick={handleGptSearchClick}
         >
-          <MagnifyingGlassIcon className="h-6 w-6 p-1 text-white" />
-          Search{" "}
+          <MagnifyingGlassIcon className="h-5 w-5" />
+          <span className="text-sm sm:text-base">Search</span>
         </button>
       </div>
     </div>

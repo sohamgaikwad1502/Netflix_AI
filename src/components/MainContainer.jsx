@@ -8,12 +8,13 @@ const MainContainer = () => {
 
   if (!movies) return null;
 
-  const { original_title, overview, id } = movies[8];
+  const { original_title, overview, id } =
+    movies[Math.floor(Math.random() * movies.length)];
 
   return (
-    <div className="relative h-[50vh] sm:h-[60vh] md:h-[70vh] lg:h-screen w-full overflow-hidden">
-      <VideoTitle title={original_title} overview={overview} />
+    <div className="relative h-screen w-full overflow-hidden">
       <VideoBackground movie_id={id} />
+      <VideoTitle title={original_title} overview={overview} />
     </div>
   );
 };

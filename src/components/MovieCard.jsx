@@ -16,7 +16,7 @@ const MovieCard = ({ movie }) => {
         />
       </div>
       <div className="mt-2 w-full">
-        <span className="text-white font-medium text-xs sm:text-sm line-clamp-1 text-center">
+        <span className="w-32 text-white font-medium  sm:text-sm  sm:w-48 line-clamp-1 text-center">
           {title}
         </span>
       </div>

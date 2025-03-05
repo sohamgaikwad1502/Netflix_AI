@@ -14,7 +14,9 @@ const GptMovieSuggestions = () => {
           </div>
         ))
       ) : (
-        <div>No Movies Found type movie related prompt only</div>
+        <div className="mx-8 my-8 flex flex-wrap mt-8  justify-center rounded-xl">
+          Movies will show here. Type movie related prompt only!
+        </div>
       )}
     </div>
   );
