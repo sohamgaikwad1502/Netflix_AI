@@ -4,7 +4,6 @@ import { MOVIES_BASE_URL, options } from "../../utils/constants";
 import { useEffect } from "react";
 
 const useGetVideoData = (movie_id) => {
-  const trailerVideo = useSelector((store) => store?.movies?.trailerVideo);
   const dispatch = useDispatch();
   const getTrailer = async () => {
     const video_url = MOVIES_BASE_URL + movie_id + "/videos";
@@ -22,8 +21,8 @@ const useGetVideoData = (movie_id) => {
   };
 
   useEffect(() => {
-    !trailerVideo && getTrailer();
-  }, []);
+    getTrailer();
+  }, [movie_id]);
 };
 
 export default useGetVideoData;

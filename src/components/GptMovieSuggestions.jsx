@@ -9,7 +9,7 @@ const GptMovieSuggestions = () => {
     <div className="mx-8 my-8 flex flex-wrap mt-8  justify-center bg-black/70 rounded-xl">
       {recommendedMovies ? (
         recommendedMovies?.map((movie, index) => (
-          <div className="p-2">
+          <div className="p-2" key={movie?.id || index}>
             <MovieCard key={movie?.id || index} movie={movie} />
           </div>
         ))
